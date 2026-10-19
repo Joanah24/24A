@@ -1,0 +1,923 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOANÉ | Online Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* HEADER */
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #feffff;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        .cart {
+            background: #153f55;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        /* HOME */
+        .hero {
+            min-height: 400px;
+            background: linear-gradient(135deg, #03072e, #03072e);
+            color: #faf9f9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 70px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 20px;
+            font-weight: normal;
+            color: #fffefe;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            background: #559beb;
+            color: #0f172a;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2a4d61;
+            color: white;
+        }
+
+        .hero .btn {
+            margin-top: 15px;
+        }
+
+        /* GENERAL SECTIONS */
+        section {
+            padding: 65px 7%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #00000010;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 180px;
+            background: #9fc4f0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #1b455a;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 12px;
+        }
+
+        .product-card button {
+            width: 100%;
+        }
+
+        /* ABOUT */
+        #about {
+            background: #eaf5fc;
+        }
+
+        .info {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* OWNER */
+        #owner {
+            background: #f8fafc;
+        }
+
+        .owner-card {
+            max-width: 600px;
+            margin: 30px auto 0;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #00000010;
+        }
+
+        .owner-photo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #e0f2fe;
+        }
+
+        .owner-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .owner-card h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .owner-title {
+            color: #0284c7;
+            margin-bottom: 15px;
+        }
+
+        .owner-description {
+            line-height: 1.8;
+            color: #475569;
+        }
+
+        /* SERVICES */
+        #services {
+            background: #eaf5fc;
+        }
+
+        .service-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .service {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .service h3 {
+            margin-bottom: 12px;
+        }
+
+        /* LOCATION */
+        #location {
+            background: #f8fafc;
+        }
+
+        .location-card {
+            max-width: 900px;
+            margin: 30px auto 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px #00000010;
+        }
+
+        .location-details {
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        .location-details h3 {
+            margin-bottom: 10px;
+            color: #0284c7;
+        }
+
+        .location-details .btn {
+            margin-top: 15px;
+        }
+
+        .location-card iframe {
+            display: block;
+            width: 100%;
+            border: 0;
+        }
+
+        /* CONTACT */
+        #contact {
+            background: #eaf5fc;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 25px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #form-result {
+            margin-top: 20px;
+            color: #0284c7;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 45px 5%;
+            }
+
+            .owner-card {
+                padding: 20px;
+            }
+
+            .location-card iframe {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER AND NAVIGATION -->
+    <header>
+        <div class="logo">JOANÉ</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#owner">Owner</a>
+            <a href="#services">Services</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="cart" onclick="showCart()">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </button>
+    </header>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+        <h1>Welcome to JOANÉ</h1>
+        <h2>Elegance in Every Find.</h2>
+        <p>Discover amazing products at affordable prices.</p>
+        <a href="#products" class="btn">Shop Now</a>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <p class="description">
+            Check out some of our featured products.
+        </p>
+
+        <div class="products">
+
+            <!-- FORMAL V NECK WRAP LONG SLEEVE -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://littleboxindia.com/cdn/shop/files/20260604080226-152.jpg?v=1780588808&width=600"
+                         alt="Formal V Neck Wrap Long Sleeve">
+                </div>
+
+                <h3>Formal V Neck Wrap Long Sleeve</h3>
+                <p>Elevate Your Everyday Look.</p>
+                <div class="price">₱499</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Formal V Neck Wrap Long Sleeve',
+                        499,
+                        'images/Formal V Neck Wrap Long Sleeve.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- WASHED WIDE BAGGY JEANS -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/a97a499450e67ea5aeadc6615537f52f.jpg?imageMogr2/auto-orient%7CimageMogr2/thumbnail/800x9999%3E/quality/70/format/webp"
+                         alt="Washed Wide Baggy Jeans">
+                </div>
+
+                <h3>Washed Wide Baggy Jeans</h3>
+                <p>Your Everyday Denim Essential.</p>
+                <div class="price">₱450</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Washed Wide Baggy Jeans',
+                        450,
+                        'images/Washed Wide Baggy Jeans.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- REGULAR FIT T-SHIRT -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/N78216s8.jpg?im=Resize,width=750"
+                         alt="Regular Fit T-shirt">
+                </div>
+
+                <h3>Regular Fit T-shirt</h3>
+                <p>Simple Pieces, Stunning Style.</p>
+                <div class="price">₱299</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Regular Fit T-shirt',
+                        299,
+                        'images/Regular Fit T-shirt.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- ACID GREY DENIM SHORT -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://ph-test-11.slatic.net/p/bc5175ff8c73a835333769f6154da7af.jpg"
+                         alt="Acid Grey Denim Short">
+                </div>
+
+                <h3>Acid Grey Denim Short</h3>
+                <p>Made for Comfort, Styled for You.</p>
+                <div class="price">₱380</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Formal V Neck Wrap Long Sleeve',
+                        380,
+                        'images/Acid Grey Denim Short.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- RUBBER SHOES -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://down-ph.img.susercontent.com/file/f030341e723f10540ffe731871c595dc"
+                         alt="Rubber Shoes">
+                </div>
+
+                <h3>Rubber Shoes</h3>
+                <p>Where Comfort Meets Chic.</p>
+                <div class="price">₱499</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Rubber Shoes',
+                        499,
+                        'images/Rubber Shoes.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+             <!-- WHITE CASUAL SHOES -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img.lazcdn.com/g/ff/kf/Sfdf0273a04e64793bf01681ed28c740dn.jpg_960x960q80.jpg_.webp"
+                         alt="White Casual Shoes">
+                </div>
+
+                <h3>White Casual Shoes</h3>
+                <p>Classic White, Effortlessly Cool.</p>
+                <div class="price">₱499</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'White Casual Shoes',
+                        499,
+                        'images/White Casual Shoes.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+             <!-- WOMEN BASEBALL CAP  -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx1fpx72JPjz3mZI0-79ik-zNAiYAUsvPgXaf_blotiA&s=10"
+                         alt="Baseball Cap">
+                </div>
+
+                <h3>Baseball Cap</h3>
+                <p>Cute Cap, Cool Vibes.</p>
+                <div class="price">₱180</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Baseball Cap',
+                        180,
+                        'images/Baseball Cap.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- MEN CAP -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbob9o3CVBTTuK8mXL_mxe6Kg_0gpSMPia1I8eDdcYAA&s=10"
+                         alt="Men Cap">
+                </div>
+
+                <h3>Men Cap</h3>
+                <p>One Cap, Endless Looks.</p>
+                <div class="price">₱180</div>
+
+                <button class="btn"
+                    onclick="addToCart(
+                        'Men Cap',
+                        180,
+                        'images/Men Cap.jpg'
+                    )">
+                    Add to Cart
+                </button>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- ABOUT JOANÉ -->
+    <section id="about">
+        <h2>About JOANÉ</h2>
+
+        <div class="info">
+            <p>
+                Welcome to JOANÉ! Your one-stop online shop for stylish finds, everyday essentials, and affordable favorites. We make shopping simple, convenient, and enjoyable because great style should always be within reach..
+            </p>
+        </div>
+    </section>
+
+    <!-- OWNER -->
+    <section id="owner">
+        <h2>Meet the Owner</h2>
+
+        <div class="owner-photo">
+            <img src="images/owner.jpg" alt="JOANÉ Owner">
+        </div>
+
+            <h3>Joanah</h3>
+            <p class="owner-title">Founder of JOANÉ</p>
+
+            <p class="owner-description">
+                Hello and welcome to JOANÉ!
+                I'm the founder of this online store.
+                My goal is to offer stylish, useful, and
+                affordable products while giving customers
+                a pleasant shopping experience.
+                Thank you for supporting JOANÉ!
+            </p>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <p class="description">
+            We aim to make shopping easy for everyone.
+        </p>
+
+        <div class="service-list">
+            <div class="service">
+                <h3>🚚 Delivery</h3>
+                <p>Convenient delivery options for your orders.</p>
+            </div>
+
+            <div class="service">
+                <h3>💳 Easy Shopping</h3>
+                <p>Browse products and add them to your cart.</p>
+            </div>
+
+            <div class="service">
+                <h3>💬 Customer Support</h3>
+                <p>Contact us if you have questions about our products.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location">
+        <h2>Find JOANÉ</h2>
+
+        <p class="description">
+            Our landmark is Artajo Village, Alae,
+            Manolo Fortich, Bukidnon, Philippines.
+        </p>
+
+        <div class="location-card">
+            <div class="location-details">
+                <h3>📍 Our Landmark</h3>
+
+                <p>
+                    Artajo Village, Alae,<br>
+                    Manolo Fortich, Bukidnon,<br>
+                    Philippines
+                </p>
+
+                <a
+                    href="https://www.google.com/maps/@8.4206993,124.8107307,428a,75y,63.99h,75.79t/data=!3m7!1e1!3m5!1s6_Pv6zkyShCZazD2Dc6RzQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.clients6.google.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D14.20892118651608%26panoid%3D6_Pv6zkyShCZazD2Dc6RzQ%26yaw%3D63.98906797544684!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn">
+                    View on Google Maps
+                </a>
+            </div>
+
+            <iframe
+                src="https://maps.google.com/maps?q=8.4206993,124.8107307&z=17&output=embed"
+                height="350"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="JOANÉ landmark map">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+
+        <p class="description">
+            Have a question? Send us a message.
+        </p>
+
+        <form onsubmit="sendMessage(event)">
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                required>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+                required>
+
+            <textarea
+                id="message"
+                placeholder="Your Message"
+                required></textarea>
+
+            <button class="btn" type="submit">
+                Send Message
+            </button>
+        </form>
+
+        <p id="form-result"></p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 JOANÉ. All rights reserved.</p>
+        <p>Elegance in Every Find.</p>
+        <p><a href="#home">Back to Top ↑</a></p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        let cart = [];
+        let total = 0;
+
+        // ADD PRODUCT TO CART
+        function addToCart(name, price, image) {
+            cart.push({
+                name: name,
+                price: price,
+                image: image
+            });
+
+            total += price;
+
+            document.getElementById("cart-count").textContent =
+                cart.length;
+
+            alert(name + " added to your cart!");
+        }
+
+        // DISPLAY SHOPPING CART WITH PRODUCT PICTURES
+        function showCart() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            const cartWindow = window.open(
+                "",
+                "_blank",
+                "width=500,height=650"
+            );
+
+            if (!cartWindow) {
+                alert("Please allow pop-ups to view your cart.");
+                return;
+            }
+
+            const items = cart.map(function(item) {
+                return `
+                    <div class="cart-item">
+                        <img
+                            src="${item.image}"
+                            alt="${item.name}"
+                            onerror="this.alt='Image unavailable';">
+
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p>₱${item.price.toLocaleString("en-PH")}</p>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            cartWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+
+                    <meta name="viewport"
+                          content="width=device-width, initial-scale=1.0">
+
+                    <title>JOANÉ Shopping Cart</title>
+
+                    <style>
+                        * {
+                            box-sizing: border-box;
+                        }
+
+                        body {
+                            font-family: Arial, sans-serif;
+                            padding: 20px;
+                            background: #f8fafc;
+                            color: #1e293b;
+                        }
+
+                        h1 {
+                            text-align: center;
+                            color: #153f55;
+                            margin-bottom: 25px;
+                        }
+
+                        .cart-item {
+                            display: flex;
+                            align-items: center;
+                            gap: 15px;
+                            padding: 12px;
+                            margin-bottom: 12px;
+                            background: white;
+                            border-radius: 10px;
+                            box-shadow: 0 2px 8px #00000010;
+                        }
+
+                        .cart-item img {
+                            width: 85px;
+                            height: 85px;
+                            flex-shrink: 0;
+                            object-fit: contain;
+                            border-radius: 8px;
+                            background: #e0f2fe;
+                        }
+
+                        .item-details h3 {
+                            margin: 0 0 8px;
+                            font-size: 16px;
+                        }
+
+                        .item-details p {
+                            color: #0284c7;
+                            font-weight: bold;
+                            margin: 0;
+                        }
+
+                        .total {
+                            text-align: right;
+                            font-size: 20px;
+                            font-weight: bold;
+                            margin-top: 25px;
+                            padding-top: 15px;
+                            border-top: 1px solid #cbd5e1;
+                        }
+
+                        .close-btn {
+                            display: block;
+                            width: 100%;
+                            padding: 12px;
+                            margin-top: 20px;
+                            border: none;
+                            border-radius: 6px;
+                            background: #153f55;
+                            color: white;
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+
+                        .close-btn:hover {
+                            background: #245c75;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <h1>JOANÉ Shopping Cart</h1>
+
+                    <div class="cart-items">
+                        ${items}
+                    </div>
+
+                    <p class="total">
+                        Total: ₱${total.toLocaleString("en-PH")}
+                    </p>
+
+                    <button class="close-btn"
+                            onclick="window.close()">
+                        Close Cart
+                    </button>
+                </body>
+                </html>
+            `);
+
+            cartWindow.document.close();
+        }
+
+        // CONTACT FORM
+        function sendMessage(event) {
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            document.getElementById("form-result").textContent =
+                "Thank you, " + name +
+                "! Your message has been received.";
+
+            event.target.reset();
+        }
+    </script>
+
+</body>
+</html>
